@@ -1,0 +1,44 @@
+@import '../../../../variables';
+
+.wrapper {
+  padding: 2rem;
+  max-width: 800px;
+  min-height: 100dvh;
+  background-color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  .btnDelete {
+    border: 2px solid $colorError;
+    font-weight: 600;
+    background: transparent;
+    padding: 0.3rem 0.4rem;
+    color: $colorError;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: rgba($colorError, 0.1);
+    }
+  }
+}
+
+.form__submit {
+  display: flex; /* oder "display: grid;" falls du Grid verwendest */
+  gap: 10px; /* Abstand zwischen den Buttons */
+}
+
+.navigateBtn {
+  margin: 1rem 0;
+  background: none;
+  border: none;
+}

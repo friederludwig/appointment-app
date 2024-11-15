@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+    <h3>Appointment Service</h3>
+    <div class="form__field" [ngClass]="{ error: fieldError('email') }">
+      <label for="email">Email:</label>
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        class="form__field"
+        placeholder="Enter your email"
+      />
+      @if (fieldError('email') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div class="form__field" [ngClass]="{ error: fieldError('password') }">
+      <label for="password">Password:</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        class="form__field"
+        placeholder="Enter your password"
+      />
+      @if (fieldError('password') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    @if (invalidCredentialsMessage) {
+    <span class="error formError">{{ invalidCredentialsMessage }}</span>
+    }
+
+    <app-button label="Login" type="submit" />
+  </form>
+</div>

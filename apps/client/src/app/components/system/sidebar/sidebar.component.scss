@@ -1,0 +1,82 @@
+@import "../../../../variables";
+
+.sidebar {
+  .inner {
+    padding: 1rem 0;
+    height: 97dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sidebarWidth;
+  height: 100dvh;
+  border-right: 1px solid $colorGray;
+  background-color: rgba($colorGray, 0.6);
+  margin-top: 2rem;
+
+  nav {
+    ul {
+      a {
+        display: block;
+        padding: 0.8rem 1rem;
+        color: $colorBlack;
+        transition: all 0.3s;
+        font-size: 1.1rem;
+        &:hover {
+          background-color: rgba($colorTertiary, 0.6);
+        }
+      }
+    }
+  }
+}
+
+.active {
+  color: blue !important;
+  font-weight: bold !important;
+}
+
+#logo {
+  background-color: $colorSecondary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $sidebarWidth;
+  padding: 1rem;
+  font-weight: 700;
+  color: $colorWhite;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.userpanel {
+  margin: 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  &__btnLogout {
+    margin: 1rem 0;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    opacity: 0.8;
+
+    &:hover {
+      background-color: darken($color: $colorTertiary, $amount: 10);
+    }
+  }
+}

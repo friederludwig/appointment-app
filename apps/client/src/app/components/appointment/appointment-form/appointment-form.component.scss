@@ -1,0 +1,41 @@
+@import "../../../../variables";
+
+.wrapper {
+  padding: 2rem;
+  max-width: 800px;
+  min-height: 100dvh;
+  background-color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  .btnDelete {
+    border: 1px solid $colorError;
+    background: transparent;
+    padding: 0.4rem 0.6rem;
+    color: $colorError;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &:hover {
+      background-color: rgba($colorError, 0.1);
+    }
+  }
+}
+
+.navigateBtn {
+  margin: 1rem 0;
+  background: none;
+  border: none;
+}

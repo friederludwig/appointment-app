@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  postgres_local_db:
+    image: postgres:latest
+    container_name: appointment-db
+    ports:
+      - "5432:5432"
+    networks:
+      - default
+    environment:
+      # Password is only used for local development!
+      - "POSTGRES_PASSWORD=Admin123"
+      - "POSTGRES_USER=dev_user"
+      - "POSTGRES_DB=appointment-db"

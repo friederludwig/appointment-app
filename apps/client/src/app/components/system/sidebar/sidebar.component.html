@@ -1,0 +1,25 @@
+@if(isAuthenticated() && currentUser) {
+<div class="sidebar">
+  <span id="logo">KFZ Appointments</span>
+  <div class="inner">
+    <nav>
+      <ul>
+        @for (link of navigation; track link.id) {
+        <li>
+          <a routerLink="{{ link.route }}" routerLinkActive="active">{{
+            link.title
+          }}</a>
+        </li>
+        }
+      </ul>
+    </nav>
+    <div class="userpanel">
+      <div class="userpanel__user">
+        <i class="pi pi-user" style="font-size: 1rem"></i>
+        {{ currentUser.username }} [{{ currentUser.role }}]
+      </div>
+      <button class="userpanel__btnLogout" (click)="logout()">Abmelden</button>
+    </div>
+  </div>
+</div>
+}

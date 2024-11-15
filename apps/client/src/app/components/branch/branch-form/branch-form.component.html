@@ -1,0 +1,63 @@
+<div class="wrapper">
+  <button (click)="navigateBack()" class="navigateBtn">
+    <i class="pi pi-arrow-left" style="font-size: 1.5rem"></i>
+  </button>
+
+  <div class="header">
+    <div>
+      <h2>{{ title }}</h2>
+    </div>
+  </div>
+
+  <form class="form" [formGroup]="form" (submit)="submit()">
+    <div class="form__field" [ngClass]="{ error: fieldError('city') }">
+      <label for="city">City</label>
+      <input id="city" formControlName="city" type="text" />
+      @if(fieldError('city')) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div
+      class="form__field"
+      [ngClass]="{ error: fieldError('openingHoursStart') }"
+    >
+      <label for="openingHoursStart">Opening Hours Start</label>
+      <input
+        id="openingHoursStart"
+        formControlName="openingHoursStart"
+        type="time"
+      />
+      @if(fieldError('openingHoursStart')) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div
+      class="form__field"
+      [ngClass]="{ error: fieldError('openingHoursEnd') }"
+    >
+      <label for="openingHoursEnd">Opening Hours End</label>
+      <input
+        id="openingHoursEnd"
+        formControlName="openingHoursEnd"
+        type="time"
+      />
+      @if(fieldError('openingHoursEnd')) {
+      <small class="error">Required field</small>
+      }
+    </div>
+    @if(!userHasPermissions) {
+    <span class="info">
+      Only the <b>admin</b> can create or edit a branch.
+    </span>
+    }
+    <div class="form__submit">
+      <app-button
+        [disabled]="form.invalid || !userHasPermissions"
+        type="submit"
+        label="Save"
+      ></app-button>
+    </div>
+  </form>
+</div>

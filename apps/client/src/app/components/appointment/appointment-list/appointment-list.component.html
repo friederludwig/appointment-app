@@ -1,0 +1,88 @@
+<div class="wrapper">
+  <div class="sticky-header">
+    <div class="header">
+      <h2 class="title">Appointments</h2>
+      <a class="btn" routerLink="create">
+        <i class="pi pi-plus" style="font-size: 0.8rem; font-weight: 700"></i>
+        New Appointment
+      </a>
+    </div>
+
+    <div class="filter">
+      <div class="filter__buttons">
+        <div>Branch:</div>
+        <button (click)="onBranchFilterChange(false)">All</button>
+        @for(branch of branches; track branch) {
+        <button
+          (click)="onBranchFilterChange(branch.city)"
+          [ngClass]="{ active: branch.city === selectedBranch }"
+        >
+          {{ branch.city }}
+        </button>
+        }
+      </div>
+
+      <div class="filter__buttons">
+        <div>Status:</div>
+        <button (click)="onStatusFilterChange(false)">All</button>
+        @for(status of states | keyvalue; track status) {
+        <button
+          (click)="onStatusFilterChange(status.value)"
+          [ngClass]="{ active: status.value === selectedStatus }"
+        >
+          {{ status.value }}
+        </button>
+        }
+      </div>
+
+      <div class="filter__buttons">
+        <div>Creator:</div>
+        <button (click)="onCreatorFilterChange(false)">All</button
+        ><button
+          (click)="onCreatorFilterChange(true)"
+          [ngClass]="{ active: !!selectedCreator }"
+        >
+          Own
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (selectedBranch) {
+  <div class="currentBranch">{{ selectedBranch }}</div>
+  } @else {
+  <div class="currentBranch">Alle</div>
+  }
+
+  <ul class="appointmentList">
+    <div class="appointmentList__header">
+      <span>Datum</span>
+      <span>Uhrzeit</span>
+      <span>Standort</span>
+      <span>Kunde</span>
+      <span>Status</span>
+      <span>Reg Nr.</span>
+      <span>Assignment</span>
+    </div>
+    @for(appointment of appointments$ | async; track appointment) {
+    <li class="appointmentList__item">
+      <a [routerLink]="[appointment.id]">
+        <span>{{ appointment.date | date : 'dd.MM.YYYY' }}</span>
+        <span>{{ appointment.time }} Uhr </span>
+        <span>{{ appointment.branch.city }}</span>
+        <span>{{ appointment.vehicleOwner }}</span>
+        <span
+          class="statusChip statusChip--{{
+            getStatusCssClass(appointment.status)
+          }}"
+        >
+          <span class="led"></span>
+          {{ appointment.status }}
+        </span>
+        <span>{{ appointment.vehicleRegNo }}</span>
+        <span>{{ appointment.assignment }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+</div>

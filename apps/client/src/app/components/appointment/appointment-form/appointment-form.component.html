@@ -1,0 +1,102 @@
+<div class="wrapper">
+  <button (click)="navigateBack()" class="navigateBtn">
+    <i class="pi pi-arrow-left" style="font-size: 1.5rem"></i>
+  </button>
+  <div class="header">
+    <div>
+      <h2>{{ title }}</h2>
+    </div>
+    @if(appointment && userHasPermissions) {
+    <button class="btnDelete" (click)="delete()">
+      <i class="pi pi-trash"></i>
+      <span> Delete </span>
+    </button>
+    }
+  </div>
+  <form class="form" [formGroup]="form" (submit)="submit()">
+    @if (appointment) {
+    <div class="form__field" [ngClass]="{ error: fieldError('status') }">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="" disabled>Select status</option>
+        @for(status of statusOptions | keyvalue; track status) {
+        <option [value]="status.value">{{ status.value }}</option>
+        }
+      </select>
+      @if (fieldError('status') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+    }
+
+    <div class="form__field" [ngClass]="{ error: fieldError('date') }">
+      <label for="date">Date</label>
+      <input id="date" formControlName="date" type="date" />
+      @if (fieldError('date') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div
+      class="form__field"
+      [ngClass]="{error: fieldError('time') || this.form.errors?.['openingHours']}"
+    >
+      <label for="time">Time</label>
+      <input id="time" formControlName="time" type="time" />
+      @if (this.form.errors?.['openingHours']) {
+      <small class="error">{{this.form.errors?.['openingHours']}}</small>
+      } @if (fieldError('time') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div class="form__field" [ngClass]="{ error: fieldError('vehicleRegNo') }">
+      <label for="vehicleRegNo">Vehicle Registration No</label>
+      <input id="vehicleRegNo" formControlName="vehicleRegNo" type="text" />
+      @if (fieldError('vehicleRegNo') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div class="form__field" [ngClass]="{ error: fieldError('vehicleOwner') }">
+      <label for="vehicleOwner">Vehicle Owner</label>
+      <input id="vehicleOwner" formControlName="vehicleOwner" type="text" />
+      @if (fieldError('vehicleOwner') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div class="form__field" [ngClass]="{ error: fieldError('branch') }">
+      <label for="branch">Branch</label>
+      <select id="branch" formControlName="branch">
+        <option value="" disabled>Select branch</option>
+        @for(branch of branches; track branch) {
+        <option [value]="branch.id">{{ branch.city }}</option>
+        }
+      </select>
+      @if (fieldError('branch') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+
+    <div class="form__field" [ngClass]="{ error: fieldError('assignment') }">
+      <label for="assignment">Assignment</label>
+      <input id="assignment" formControlName="assignment" type="text" />
+      @if (fieldError('assignment') ) {
+      <small class="error">Required field</small>
+      }
+    </div>
+    @if(!userHasPermissions) {
+    <span class="info">
+      Only the <b>creator</b> or <b>admin</b> can edit this entry.
+    </span>
+    }
+    <div class="form__submit">
+      <app-button
+        [disabled]="!userHasPermissions || form.invalid"
+        type="submit"
+        label="Save"
+      ></app-button>
+    </div>
+  </form>
+</div>

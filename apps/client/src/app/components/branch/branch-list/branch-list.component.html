@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="header">
+    <h2 class="title">Branches</h2>
+    <a class="btn" routerLink="create"> New Branch </a>
+  </div>
+  @if (branches) {
+  <ul class="branchList">
+    <div class="branchList__header">
+      <span>City</span>
+      <span>Opened from</span>
+      <span>Opened until</span>
+    </div>
+    @for (branch of branches; track branch) {
+    <li class="branchList__item">
+      <a [routerLink]="[branch.id]">
+        <span>{{ branch.city }}</span>
+        <span>{{ branch.openingHoursStart }} Uhr</span>
+        <span>{{ branch.openingHoursEnd }} Uhr</span>
+      </a>
+    </li>
+    }
+  </ul>
+  }
+</div>

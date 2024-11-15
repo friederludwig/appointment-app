@@ -1,0 +1,5 @@
+<app-appointment-form
+  title="New Appointment"
+  [branches]="branches$ | async"
+  (appointmentCreate)="onCreate($event)"
+></app-appointment-form>

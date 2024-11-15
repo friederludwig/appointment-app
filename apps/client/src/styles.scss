@@ -1,0 +1,103 @@
+@import "./variables";
+@import "primeicons/primeicons.css";
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  color: $colorBlack;
+  //background-color: $colorGray;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select {
+  font-size: 1rem;
+}
+
+/* Reset input autofill default browser styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: $colorBlack;
+}
+
+/* Global form styling */
+.form {
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0;
+    margin: 0.8rem 0;
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    input,
+    select {
+      padding: 0.5rem 0.5rem;
+      border: none;
+      margin-bottom: 0.1rem;
+      border-bottom: 1px solid $colorBlack;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &__submit {
+    margin-top: 0.5rem;
+  }
+
+  .info {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background-color: rgba($colorWarning, 0.1);
+    display: block;
+    color: $colorWarning;
+  }
+
+  .error {
+    color: $colorError;
+    font-size: 0.8rem;
+    font-style: italic;
+    label {
+      color: $colorBlack;
+      font-style: initial;
+    }
+    select,
+    input {
+      border-bottom: 2px solid $colorError;
+    }
+  }
+}
